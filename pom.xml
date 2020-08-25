@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mathworks.headcount</groupId>
+    <artifactId>headcount_test-integration</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>headcount_test-integration</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <mwhtmlguitest.version>5.2</mwhtmlguitest.version>
+    </properties>
+
+    <description>Executes different headcount flows</description>
+
+    <profiles>
+        <profile>
+            <id>test1</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>Using env.test1.properties</echo>
+                                        <copy file="./src/test/resources/env.test1.properties"
+                                              tofile="./src/test/resources/env.properties" overwrite="true" />
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>test2</id>
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>Using env.test2.properties</echo>
+                                        <copy file="./src/test/resources/env.test2.properties"
+                                              tofile="./src/test/resources/env.properties" overwrite="true" />
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>test3</id>
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>Using env.test3.properties</echo>
+                                        <copy file="./src/test/resources/env.test3.properties"
+                                              tofile="./src/test/resources/env.properties" overwrite="true" />
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>stage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>Using env.stage.properties</echo>
+                                        <copy file="./src/test/resources/env.stage.properties"
+                                              tofile="./src/test/resources/env.properties" overwrite="true" />
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <build>
+        <plugins>
+
+            <!--<plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>S:/workspace/Jobreqs/target/classes</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>S:/workspace/dmahapat_jobreqs.dev/jobreqs_devmain/target/classes</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <fork>true</fork>
+                    <compilerVersion>1.8</compilerVersion>
+                    <!-- the version of maven we're using defaults to 1.5/1.5, but making
+                        it explicit here -->
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <testSource>1.8</testSource>
+                    <testTarget>1.8</testTarget>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*.java</exclude>
+                    </excludes>
+                    <systemPropertyVariables>
+                        <browserArtifactsDirectory>${project.build.directory}/artifacts</browserArtifactsDirectory>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <!-- Where to drop browser summary report generated by the TestSummaryListener
+                            listed in properties section -->
+                        <browserReportsDirectory>${project.build.directory}/failsafe-reports</browserReportsDirectory>
+                        <!-- Where to store the generated screenshots and diagnostic artifacts -->
+                        <browserArtifactsDirectory>${project.build.directory}/artifacts</browserArtifactsDirectory>
+                        <!-- Needed for the Browser Support plugin and mwhtmlguitest to work
+                            well together -->
+                        <browserPropertiesLocation>${browser.properties.file}</browserPropertiesLocation>
+                    </systemPropertyVariables>
+                    <properties>
+                        <!-- Optional: This listener creates the browser summary report, after
+                            all tests are done executing, in a location specified by browserReportsDirectory -->
+                        <property>
+                            <name>listener</name>
+                            <value>com.mathworks.test.tools.mwwebguitesttools.junitextensions.TestSummaryListener</value>
+                        </property>
+                    </properties>
+                    <includes>
+                        <include>SuiteRunnerTest.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*Test.java</exclude>
+                    </excludes>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                    <!--<execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>-->
+                </executions>
+
+
+            </plugin>
+            <plugin>
+                <groupId>com.mathworks.testtools.browsers</groupId>
+                <artifactId>browser-support-maven-plugin</artifactId>
+                <version>4.1</version>
+                <configuration>
+                    <!-- The value show below is default so does not need to be set, If
+                        you change it to a different location, you will also have to change any IDE
+                        run configs to point to this location using -DbrowserPropertiesLocation -->
+                    <!-- <browserInstallRoot>${project.build.directory}/it-browserInstallRoot</browserInstallRoot> -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install_browsers</id>
+                        <goals>
+                            <goal>installBrowsers</goal>
+                        </goals>
+                        <configuration>
+                            <browsers>
+                                <browser>
+                                    <name>firefox-release</name>
+                                </browser>
+                                <!--browser> <name>chrome-stable</name> </browser-->
+                                <browser>
+                                    <name>ie8</name>
+                                </browser>
+                                <browser>
+                                    <name>ie9</name>
+                                </browser>
+                            </browsers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report-only</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <reportSets>
+                    <reportSet>
+                        <id>html</id>
+                        <configuration>
+                            <doctitle>My API for ${project.name} ${project.version}</doctitle>
+                            <windowtitle>My API for ${project.name} ${project.version}</windowtitle>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                    </reportSet>
+                    <reportSet>
+                        <id>test-html</id>
+                        <configuration>
+                            <testDoctitle>My Test API for ${project.name} ${project.version}</testDoctitle>
+                            <testWindowtitle>My Test API for ${project.name}
+                                ${project.version}</testWindowtitle>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                        <reports>
+                            <report>test-javadoc</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>
+                test
+            </scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mathworks.test.tools</groupId>
+            <artifactId>mwhtmlguitest</artifactId>
+            <version>${mwhtmlguitest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.6.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine -->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.6.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mathworks.internal.recruiting</groupId>
+            <artifactId>headcountmodeltypes</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.0.3</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+</project>
